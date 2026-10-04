@@ -65,8 +65,8 @@ function SaturatingImage({ src, alt, wrapClass = "", imgClass = "" }: { src: str
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-        style={{ WebkitMaskImage: mask, maskImage: mask }}
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+        style={{ WebkitMaskImage: mask, maskImage: mask, opacity: pos ? 1 : 0 }}
       />
     </div>
   );
