@@ -51,55 +51,15 @@ function Shell({ children, className = "" }: { children: React.ReactNode; classN
   return <div className={`mx-auto max-w-6xl rounded-3xl border border-border bg-card/95 px-6 py-16 shadow-card md:px-14 md:py-24 ${className}`}>{children}</div>;
 }
 
-type Crop = { x: number; y: number; scale: number; lift: number };
-const DEFAULT_CROP: Crop = { x: 50, y: 30, scale: 100, lift: 0 };
-
-function CropControls({ label, crop, onChange }: { label: string; crop: Crop; onChange: (c: Crop) => void }) {
-  const slider = (key: keyof Crop, name: string, min: number, max: number) => (
-    <label className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-      <span className="w-14">{name}</span>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={crop[key]}
-        onChange={(e) => onChange({ ...crop, [key]: Number(e.target.value) })}
-        className="h-1 flex-1 cursor-pointer accent-foreground"
-      />
-      <span className="w-8 text-right tabular-nums">{crop[key]}</span>
-    </label>
-  );
-  return (
-    <div className="flex flex-col gap-1.5">
-      <p className="label-mono text-muted-foreground">{label}</p>
-      {slider("x", "Focus X", 0, 100)}
-      {slider("y", "Focus Y", 0, 100)}
-      {slider("scale", "Zoom", 80, 160)}
-      {slider("lift", "Lift", -30, 30)}
-    </div>
-  );
-}
-
 function Hero() {
-  const [showControls, setShowControls] = useState(false);
-  const [desktopCrop, setDesktopCrop] = useState<Crop>(DEFAULT_CROP);
-  const [mobileCrop, setMobileCrop] = useState<Crop>(DEFAULT_CROP);
-
-  const portraitStyle = (c: Crop): React.CSSProperties => ({
-    objectPosition: `${c.x}% ${c.y}%`,
-    transform: `translateY(${-c.lift}px) scale(${c.scale / 100})`,
-    transformOrigin: `${c.x}% ${c.y}%`,
-  });
-
   return (
     <section className="px-4 pt-24">
       <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border bg-card shadow-card">
-        {/* Name sits on the back layer; the portrait overlaps it in front */}
-        <h1 className="pointer-events-none absolute inset-x-0 top-0 z-0 select-none px-4 pt-14 text-center text-[13vw] font-extrabold leading-[0.9] tracking-tight md:pt-16 md:text-[8.5rem]">
+        <h1 className="relative z-10 px-4 pt-14 text-center text-[13vw] font-extrabold leading-[0.9] tracking-tight md:pt-16 md:text-[8.5rem]">
           <span className="text-outline block md:inline">PRUTHVIRAJ</span>{" "}
           <span className="block md:inline">RAJPUT</span>
         </h1>
-        <div className="relative z-10 grid gap-8 px-6 pb-10 pt-[42vw] md:grid-cols-[1fr_1.1fr_1fr] md:items-end md:px-12 md:pb-0 md:pt-44">
+        <div className="relative grid gap-8 px-6 pb-10 pt-6 md:grid-cols-[1fr_1.1fr_1fr] md:items-end md:px-12 md:pb-0">
           <div className="order-2 md:order-1 md:pb-14">
             <p className="text-2xl font-semibold uppercase leading-tight tracking-tight">Content Producer &<br />Social Media Strategist</p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">I handle the entire content pipeline.<br />Strategy · Script · Shoot · Edit · Publish</p>
@@ -108,23 +68,7 @@ function Hero() {
               <a href="#work" className="inline-flex items-center gap-1.5 rounded-full border border-border px-5 py-3 text-xs font-semibold uppercase tracking-wider transition-colors hover:bg-muted">View My Work <ArrowDown className="h-3.5 w-3.5" /></a>
             </div>
           </div>
-          {/* Portrait: front layer, blends into the card at the bottom so shoulders don't look cut out */}
-          <div className="relative order-1 -mt-[38vw] aspect-[4/5] w-full overflow-hidden md:order-2 md:-mt-40">
-            <img
-              src="https://img.sanishtech.com/u/703f441502c6aad38a677ddd47fa1b3b.png"
-              alt="Portrait of Prithvi"
-              style={portraitStyle(mobileCrop)}
-              className="h-full w-full object-cover grayscale md:hidden"
-            />
-            <img
-              src="https://img.sanishtech.com/u/703f441502c6aad38a677ddd47fa1b3b.png"
-              alt=""
-              aria-hidden
-              style={portraitStyle(desktopCrop)}
-              className="hidden h-full w-full object-cover grayscale md:block"
-            />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-card to-transparent" />
-          </div>
+          <img src="https://img.sanishtech.com/u/703f441502c6aad38a677ddd47fa1b3b.png" alt="Portrait of Prithvi" className="order-1 -mt-10 aspect-[4/5] w-full rounded-t-[2rem] object-cover grayscale md:order-2 md:-mt-24" />
           <div className="order-3 flex flex-col gap-3 md:items-end md:pb-14">
             <p className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground md:text-right">From concept to distribution, I build and manage content around what each project actually needs.</p>
             <div className="flex flex-wrap gap-2 md:justify-end">
@@ -133,22 +77,7 @@ function Hero() {
             </div>
           </div>
         </div>
-        <div className="relative z-10 flex justify-center pb-4">
-          <button
-            type="button"
-            onClick={() => setShowControls((v) => !v)}
-            className="rounded-full border border-border px-4 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:bg-muted"
-          >
-            {showControls ? "Hide portrait controls" : "Adjust portrait"}
-          </button>
-        </div>
-        {showControls && (
-          <div className="relative z-10 mx-6 mb-6 grid gap-6 rounded-2xl border border-border bg-muted/50 p-5 md:mx-12 md:grid-cols-2">
-            <CropControls label="Desktop crop" crop={desktopCrop} onChange={setDesktopCrop} />
-            <CropControls label="Mobile crop" crop={mobileCrop} onChange={setMobileCrop} />
-          </div>
-        )}
-        <div className="relative z-10 border-t border-border bg-ink px-6 py-4 text-ink-foreground">
+        <div className="border-t border-border bg-ink px-6 py-4 text-ink-foreground">
           <p className="label-mono flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center">
             {["Strategy", "Script", "Shoot", "Edit", "Publish"].map((s, i) => (
               <span key={s} className="flex items-center gap-4">{s}{i < 4 && <span className="text-ink-muted">→</span>}</span>
