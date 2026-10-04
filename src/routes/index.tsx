@@ -73,7 +73,7 @@ function Hero() {
             <p className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground md:text-right">From concept to distribution, I build and manage content around what each project actually needs.</p>
             <div className="flex flex-wrap gap-2 md:justify-end">
               <a href={links.instagram} className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-xs font-medium shadow-pill"><Instagram className="h-3.5 w-3.5" />Instagram</a>
-              <a href={links.linkedin} className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-xs font-medium shadow-pill"><Linkedin className="h-3.5 w-3.5" />LinkedIn</a>
+              <a href={links.whatsapp} className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-xs font-medium shadow-pill"><MessageCircle className="h-3.5 w-3.5" />WhatsApp</a>
             </div>
           </div>
         </div>
