@@ -62,7 +62,7 @@ function Hero() {
         <div className="relative grid gap-8 px-6 pb-10 pt-6 md:grid-cols-[1fr_1.1fr_1fr] md:items-end md:px-12 md:pb-0">
           <div className="order-2 md:order-1 md:pb-14">
             <p className="text-2xl font-semibold uppercase leading-tight tracking-tight">Content Producer &<br />Social Media Strategist</p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">I handle the entire content pipeline.</p>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">I handle the entire content pipeline.<br /></p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="#contact" className="inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-3 text-xs font-semibold uppercase tracking-wider text-primary-foreground transition-transform hover:-translate-y-0.5">Let's Work <ArrowUpRight className="h-3.5 w-3.5" /></a>
               <a href="#work" className="inline-flex items-center gap-1.5 rounded-full border border-border px-5 py-3 text-xs font-semibold uppercase tracking-wider transition-colors hover:bg-muted">View My Work <ArrowDown className="h-3.5 w-3.5" /></a>
