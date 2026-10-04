@@ -214,8 +214,8 @@ function Twisted() {
     <section className="px-4 py-20">
       <Reveal className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1fr_1.3fr]">
         <div className="flex aspect-square items-center justify-center rounded-3xl border border-border bg-card/70 backdrop-blur-sm">
-          <div className="text-center">
-            <p className="text-5xl font-extrabold leading-none tracking-tight md:text-6xl">TWISTED<br /><span className="text-outline">MEDIA</span></p>
+          <div className="flex flex-col items-center text-center">
+            <img src="https://img.sanishtech.com/u/208d0a100edf78ed17566e3db087429c.png" alt="Twisted Media logo" className="w-3/5 max-w-xs object-contain" loading="lazy" />
             <p className="label-mono mt-5 text-muted-foreground">@twistedmedia.io</p>
           </div>
         </div>
