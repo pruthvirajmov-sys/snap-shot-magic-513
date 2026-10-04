@@ -36,7 +36,7 @@ function Label({ children }: { children: string }) {
 
 function CaseStudy() {
   const { project: p } = Route.useLoaderData();
-  const next = projects[(projects.indexOf(p) + 1) % projects.length];
+  const next = projects[(projects.findIndex((x) => x.slug === p.slug) + 1) % projects.length]!;
   return (
     <div className="bg-background">
       <Nav />
