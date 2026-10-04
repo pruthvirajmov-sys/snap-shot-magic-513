@@ -103,7 +103,7 @@ export const clients = ["Arihant Jewellers", "Education Institute", "Advocate", 
 
 // Replace "#" with your real links.
 export const links = {
-  instagram: "#",
+  instagram: "https://www.instagram.com/pruthviraj.mov/",
   linkedin: "#",
   email: "mailto:hello@example.com",
   emailAddress: "hello@example.com",
