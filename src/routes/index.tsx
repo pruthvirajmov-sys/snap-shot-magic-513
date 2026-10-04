@@ -65,7 +65,7 @@ function SaturatingImage({ src, alt, wrapClass = "", imgClass = "" }: { src: str
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 h-full w-full object-contain transition-opacity duration-300"
         style={{ WebkitMaskImage: mask, maskImage: mask, opacity: pos ? 1 : 0 }}
       />
     </div>
@@ -93,7 +93,7 @@ function Hero() {
               <a href="#work" className="inline-flex items-center gap-1.5 rounded-full border border-border px-5 py-3 text-xs font-semibold uppercase tracking-wider transition-colors hover:bg-muted">View My Work <ArrowDown className="h-3.5 w-3.5" /></a>
             </div>
           </div>
-          <SaturatingImage src="https://img.sanishtech.com/u/f6814816a283debaad54db5a750cf8d7.png" alt="Portrait of Prithvi" wrapClass="order-1 -mt-10 rounded-t-[2rem] md:order-2 md:-mt-24" imgClass="aspect-[4/5] w-full object-cover grayscale" />
+          <SaturatingImage src="https://img.sanishtech.com/u/6ccc16fa36c18ba5707960dc0d017fe7.png" alt="Portrait of Prithvi" wrapClass="order-1 -mt-10 rounded-t-[2rem] md:order-2 md:-mt-24" imgClass="w-full grayscale" />
           <div className="order-3 flex flex-col gap-3 md:items-end md:pb-14">
             <p className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground md:text-right">From concept to distribution, I build and manage content around what each project actually needs.</p>
             <div className="flex flex-wrap gap-2 md:justify-end">
