@@ -107,6 +107,6 @@ export const links = {
   linkedin: "#",
   email: "mailto:hello@example.com",
   emailAddress: "hello@example.com",
-  whatsapp: "#",
+  whatsapp: "https://wa.me/7385725569",
   twisted: "https://instagram.com/twistedmedia.io",
 };
