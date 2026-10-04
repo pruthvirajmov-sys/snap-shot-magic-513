@@ -131,7 +131,7 @@ function Pipeline() {
   return (
     <section id="process" className="scroll-mt-24 px-4 py-10">
       <div className="mx-auto max-w-6xl rounded-3xl bg-ink px-6 py-16 text-ink-foreground shadow-card md:px-14 md:py-24">
-        <Reveal><SectionTitle ghost="Pipeline" dark>SERVICE</SectionTitle></Reveal>
+        <Reveal><SectionTitle ghost="Pipeline" dark>CONTENT{"\u00a0"}</SectionTitle></Reveal>
         <Reveal><p className="mt-6 max-w-xl text-ink-muted">I can step into the content pipeline wherever the project needs me — from the first idea to the final post.</p></Reveal>
         <ol className="mt-14 border-t border-ink-border">
           {pipeline.map((s, i) => (
