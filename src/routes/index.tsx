@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState, useRef, type FormEvent, type MouseEvent } from "react";
 import { ArrowUpRight, ArrowDown, Plus, X, Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
 import clouds from "@/assets/clouds.jpg";
 import { Nav, Badge } from "@/components/site/Nav";
@@ -47,6 +47,31 @@ function Index() {
   );
 }
 
+function SaturatingImage({ src, alt, wrapClass = "", imgClass = "" }: { src: string; alt: string; wrapClass?: string; imgClass?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState<{ x: string; y: string } | null>(null);
+  const update = (e: MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    setPos({ x: `${((e.clientX - r.left) / r.width) * 100}%`, y: `${((e.clientY - r.top) / r.height) * 100}%` });
+  };
+  const mask = pos ? `radial-gradient(circle 170px at ${pos.x} ${pos.y}, black 35%, transparent 100%)` : "none";
+  return (
+    <div ref={ref} onMouseMove={update} onMouseLeave={() => setPos(null)} className={`relative overflow-hidden ${wrapClass}`}>
+      <img src={src} alt={alt} className={imgClass} />
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-300"
+        style={{ WebkitMaskImage: mask, maskImage: mask, opacity: pos ? 1 : 0 }}
+      />
+    </div>
+  );
+}
+
 function Shell({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <div className={`mx-auto max-w-6xl rounded-3xl border border-border bg-card/95 px-6 py-16 shadow-card md:px-14 md:py-24 ${className}`}>{children}</div>;
 }
@@ -68,7 +93,7 @@ function Hero() {
               <a href="#work" className="inline-flex items-center gap-1.5 rounded-full border border-border px-5 py-3 text-xs font-semibold uppercase tracking-wider transition-colors hover:bg-muted">View My Work <ArrowDown className="h-3.5 w-3.5" /></a>
             </div>
           </div>
-          <img src="https://img.sanishtech.com/u/f6814816a283debaad54db5a750cf8d7.png" alt="Portrait of Prithvi" className="order-1 -mt-10 aspect-[4/5] w-full rounded-t-[2rem] object-cover grayscale md:order-2 md:-mt-24" />
+          <SaturatingImage src="https://img.sanishtech.com/u/f6814816a283debaad54db5a750cf8d7.png" alt="Portrait of Prithvi" wrapClass="order-1 -mt-10 rounded-t-[2rem] md:order-2 md:-mt-24" imgClass="aspect-[4/5] w-full object-cover grayscale" />
           <div className="order-3 flex flex-col gap-3 md:items-end md:pb-14">
             <p className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground md:text-right">From concept to distribution, I build and manage content around what each project actually needs.</p>
             <div className="flex flex-wrap gap-2 md:justify-end">
