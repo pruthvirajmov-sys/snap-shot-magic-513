@@ -47,6 +47,31 @@ function Index() {
   );
 }
 
+function SaturatingImage({ src, alt, wrapClass = "", imgClass = "" }: { src: string; alt: string; wrapClass?: string; imgClass?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState<{ x: string; y: string } | null>(null);
+  const update = (e: MouseEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    setPos({ x: `${((e.clientX - r.left) / r.width) * 100}%`, y: `${((e.clientY - r.top) / r.height) * 100}%` });
+  };
+  const mask = pos ? `radial-gradient(circle 170px at ${pos.x} ${pos.y}, black 35%, transparent 100%)` : "none";
+  return (
+    <div ref={ref} onMouseMove={update} onMouseLeave={() => setPos(null)} className={`relative overflow-hidden ${wrapClass}`}>
+      <img src={src} alt={alt} className={imgClass} />
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        style={{ WebkitMaskImage: mask, maskImage: mask }}
+      />
+    </div>
+  );
+}
+
 function Shell({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return <div className={`mx-auto max-w-6xl rounded-3xl border border-border bg-card/95 px-6 py-16 shadow-card md:px-14 md:py-24 ${className}`}>{children}</div>;
 }
