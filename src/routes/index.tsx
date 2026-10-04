@@ -84,7 +84,7 @@ function Hero() {
           <span className="text-outline block md:inline">PRUTHVIRAJ</span>{" "}
           <span className="block md:inline">RAJPUT</span>
         </h1>
-        <div className="relative grid gap-8 px-6 pb-10 pt-6 md:grid-cols-[1fr_1.1fr_1fr] md:items-end md:px-12 md:pb-0">
+        <div className="relative grid gap-8 px-6 pb-10 pt-6 md:grid-cols-[0.7fr_1.76fr_0.7fr] md:items-end md:px-12 md:pb-0">
           <div className="order-2 md:order-1 md:pb-14">
             <p className="text-2xl font-semibold uppercase leading-tight tracking-tight">Content Producer &<br />Social Media Strategist</p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">I handle the entire content pipeline.<br /></p>
