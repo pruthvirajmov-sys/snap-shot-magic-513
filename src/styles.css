@@ -157,4 +157,4 @@
     opacity: 1;
   }
 }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-slide-down, .hero-slide-up, .hero-fade-in { animation: none; opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-slide-down, .hero-slide-up { animation: none; opacity: 1; transform: none; } .hero-fade-in { animation: none; opacity: 1; } }
