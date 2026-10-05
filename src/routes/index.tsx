@@ -381,7 +381,7 @@ function HowIWork() {
 }
 
 function Contact() {
-  const accessKey = (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "").trim();
+  const accessKey = (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? "d967215f-e9cf-4197-891c-58c15609b40e").trim();
   const formRef = useRef<HTMLFormElement | null>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState("");
