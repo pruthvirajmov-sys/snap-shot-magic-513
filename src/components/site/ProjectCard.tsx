@@ -12,15 +12,12 @@ export function ProjectCard({ p }: { p: Project }) {
         ) : (
           <Placeholder label="[Add project image]" className="h-full w-full transition-transform duration-700 group-hover:scale-105" />
         )}
-        <span className="absolute left-3 top-3 label-mono rounded-full bg-card px-3 py-1.5 text-foreground">{p.category}</span>
         <span className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 scale-75 items-center justify-center rounded-full bg-card opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100">
           <ArrowUpRight className="h-5 w-5" />
         </span>
       </div>
       <div className="px-2 pb-3 pt-5">
         <h3 className="text-xl font-semibold uppercase tracking-tight">{p.name}</h3>
-        <p className="mt-1 text-xs font-medium text-muted-foreground">{p.role}</p>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {p.tags.map((t) => (
             <span key={t} className="label-mono rounded-full border border-border px-3 py-1.5 text-muted-foreground">{t}</span>

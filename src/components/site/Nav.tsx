@@ -4,9 +4,9 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 
 const items = [
   ["Work", "work"],
-  ["Process", "process"],
   ["Services", "services"],
   ["About", "about"],
+  ["Process", "how-i-work"],
   ["Contact", "contact"],
 ] as const;
 

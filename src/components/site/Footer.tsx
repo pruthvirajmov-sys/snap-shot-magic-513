@@ -10,8 +10,14 @@ export function Footer() {
         </div>
         <div className="space-y-2 text-sm">
           <p className="label-mono text-ink-muted">Menu</p>
-          {["Work", "Process", "Services", "About", "Contact"].map((l) => (
-            <a key={l} href={`/#${l.toLowerCase()}`} className="block hover:underline">{l}</a>
+          {[
+            ["Work", "work"],
+            ["Services", "services"],
+            ["About", "about"],
+            ["Process", "how-i-work"],
+            ["Contact", "contact"],
+          ].map(([label, anchor]) => (
+            <a key={label} href={`/#${anchor}`} className="block hover:underline">{label}</a>
           ))}
         </div>
         <div className="space-y-2 text-sm">

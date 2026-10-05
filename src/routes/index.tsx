@@ -26,15 +26,27 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const [pointer, setPointer] = useState({ x: 0, y: 0 });
+  const repelX = typeof window === "undefined" ? 0 : ((pointer.x - window.innerWidth / 2) / window.innerWidth) * 56;
+  const repelY = typeof window === "undefined" ? 0 : ((pointer.y - window.innerHeight / 2) / window.innerHeight) * 42;
+
   return (
-    <div className="relative">
-      <img src={clouds} alt="" aria-hidden width={1920} height={1088} className="pointer-events-none fixed inset-0 -z-10 h-full w-full object-cover opacity-70" />
+    <div className="relative" onMouseMove={(e) => setPointer({ x: e.clientX, y: e.clientY })} onMouseLeave={() => setPointer({ x: 0, y: 0 })}>
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden cloud-bg">
+        <img
+          src={clouds}
+          alt=""
+          aria-hidden
+          width={1920}
+          height={1088}
+          className="h-full w-full object-cover opacity-70"
+          style={{ transform: `translate(${-repelX}px, ${-repelY}px) scale(1.06)` }}
+        />
+      </div>
       <Nav />
       <main>
         <Hero />
-        <Clients />
         <Work />
-        <Pipeline />
         <Services />
         <Experience />
         <Twisted />
@@ -80,12 +92,12 @@ function Hero() {
   return (
     <section className="px-4 pt-24">
       <div className="relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border bg-card shadow-card">
-        <h1 className="relative z-10 px-4 pt-14 text-center text-[13vw] font-extrabold leading-[0.9] tracking-tight md:pt-16 md:text-[8.5rem]">
+        <h1 className="hero-slide-down relative z-10 px-4 pt-14 text-center text-[13vw] font-extrabold leading-[0.9] tracking-tight md:pt-16 md:text-[8.5rem]">
           <span className="text-outline block md:inline">PRUTHVIRAJ</span>{" "}
           <span className="block md:inline">RAJPUT</span>
         </h1>
         <div className="relative grid gap-8 px-6 pb-10 pt-6 md:grid-cols-[1fr_1.1fr_1fr] md:items-end md:px-12 md:pb-0">
-          <div className="order-2 md:order-1 md:pb-14">
+          <div className="hero-slide-down order-2 md:order-1 md:pb-14" style={{ animationDelay: "0.1s" }}>
             <p className="text-2xl font-semibold uppercase leading-tight tracking-tight">Content Producer &<br />Social Media Strategist</p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">I handle the entire content pipeline.<br /></p>
             <div className="mt-6 flex flex-wrap gap-3">
@@ -93,10 +105,10 @@ function Hero() {
               <a href="#work" className="inline-flex items-center gap-1.5 rounded-full border border-border px-5 py-3 text-xs font-semibold uppercase tracking-wider transition-colors hover:bg-muted">View My Work <ArrowDown className="h-3.5 w-3.5" /></a>
             </div>
           </div>
-          <SaturatingImage src="https://img.sanishtech.com/u/6ccc16fa36c18ba5707960dc0d017fe7.png" alt="Portrait of Prithvi" wrapClass="order-1 -mt-10 rounded-t-[2rem] md:order-2 md:-mt-24" imgClass="w-full grayscale" />
-          <div className="order-3 flex flex-col gap-3 md:items-end md:pb-14">
+          <SaturatingImage src="https://img.sanishtech.com/u/6ccc16fa36c18ba5707960dc0d017fe7.png" alt="Portrait of Prithvi" wrapClass="hero-fade-in order-1 -mt-10 rounded-t-[2rem] md:order-2 md:-mt-24" imgClass="w-full grayscale" />
+          <div className="hero-slide-up order-3 flex flex-col gap-3 md:items-end md:pb-14" style={{ animationDelay: "0.15s" }}>
             <p className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground md:text-right">From concept to distribution, I build and manage content around what each project actually needs.</p>
-            <div className="flex flex-wrap gap-2 md:justify-end">
+            <div className="hero-slide-up flex flex-wrap gap-2 md:justify-end" style={{ animationDelay: "0.25s" }}>
               <a href={links.instagram} className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-xs font-medium shadow-pill"><Instagram className="h-3.5 w-3.5" />Instagram</a>
               <a href={links.whatsapp} className="inline-flex items-center gap-1.5 rounded-full border border-border px-4 py-2 text-xs font-medium shadow-pill"><MessageCircle className="h-3.5 w-3.5" />WhatsApp</a>
             </div>
@@ -114,21 +126,6 @@ function Hero() {
   );
 }
 
-function Clients() {
-  return (
-    <section className="px-4 py-10">
-      <div className="mx-auto max-w-6xl">
-        <p className="label-mono mb-4 text-center text-muted-foreground">/Selected Clients</p>
-        <div className="flex flex-wrap justify-center gap-2">
-          {clients.map((c) => (
-            <span key={c} className="rounded-full bg-card px-5 py-2.5 text-sm font-medium shadow-pill">{c}</span>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Work() {
   return (
     <section id="work" className="scroll-mt-24 px-4 py-10">
@@ -138,66 +135,33 @@ function Work() {
           {projects.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 2) * 120}><ProjectCard p={p} /></Reveal>
           ))}
-          <Reveal>
-            <div className="flex h-full min-h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-border p-8 text-center">
-              <Plus className="h-6 w-6 text-muted-foreground" />
-              <p className="mt-3 font-semibold uppercase tracking-tight">More projects</p>
-              <p className="mt-1 text-sm text-muted-foreground">[Add additional client project]</p>
-            </div>
-          </Reveal>
         </div>
       </Shell>
     </section>
   );
 }
 
-function Pipeline() {
-  return (
-    <section id="process" className="scroll-mt-24 px-4 py-10">
-      <div className="mx-auto max-w-6xl rounded-3xl bg-ink px-6 py-16 text-ink-foreground shadow-card md:px-14 md:py-24">
-        <Reveal><SectionTitle ghost="Pipeline" dark>CONTENT{"\u00a0"}</SectionTitle></Reveal>
-        <Reveal><p className="mt-6 max-w-xl text-ink-muted">I can step into the content pipeline wherever the project needs me — from the first idea to the final post.</p></Reveal>
-        <ol className="mt-14 border-t border-ink-border">
-          {pipeline.map((s, i) => (
-            <Reveal as="li" key={s.n} delay={i * 60} className="group grid grid-cols-[3rem_1fr] items-baseline gap-4 border-b border-ink-border py-7 md:grid-cols-[6rem_1fr_1.2fr] md:gap-8">
-              <span className="text-sm font-medium text-ink-muted">{s.n}</span>
-              <h3 className="text-3xl font-semibold uppercase tracking-tight transition-transform duration-500 group-hover:translate-x-2 md:text-5xl">{s.t}</h3>
-              <p className="col-start-2 text-sm leading-relaxed text-ink-muted md:col-start-3">{s.d}</p>
-            </Reveal>
-          ))}
-        </ol>
-        <Reveal><p className="mt-14 text-center text-2xl font-semibold tracking-tight md:text-4xl">One content pipeline. <span className="text-ink-muted">From idea to upload.</span></p></Reveal>
-      </div>
-    </section>
-  );
-}
-
 function Services() {
-  const [open, setOpen] = useState(0);
   return (
     <section id="services" className="scroll-mt-24 px-4 py-20">
       <div className="mx-auto max-w-5xl">
         <Reveal><SectionTitle>Services</SectionTitle></Reveal>
         <div className="mt-10">
-          {services.map((s, i) => {
-            const active = open === i;
-            return (
-              <div key={s.t} className={`overflow-hidden transition-all duration-500 ${active ? "my-3 rounded-xl bg-ink text-ink-foreground shadow-card" : "border-b border-foreground/15"}`}>
-                <button onClick={() => setOpen(active ? -1 : i)} aria-expanded={active} className="flex w-full items-center gap-4 px-5 py-7 text-left md:px-8">
-                  <span className={`text-xs font-medium ${active ? "text-ink-muted" : "text-muted-foreground"}`}>0{i + 1}</span>
-                  <span className="flex-1 text-2xl font-medium uppercase tracking-tight md:text-5xl">{s.t}</span>
-                  {active ? <X className="h-6 w-6 shrink-0" /> : <ArrowUpRight className="h-6 w-6 shrink-0" />}
-                </button>
-                <div className={`grid transition-all duration-500 ${active ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-                  <p className="min-h-0 max-w-md px-5 pb-0 text-sm leading-relaxed text-ink-muted md:px-8 md:pl-[4.25rem]">
-                    <span className="block pb-8">{s.d}</span>
-                  </p>
-                </div>
+          {services.map((s, i) => (
+            <div key={s.t} className="group my-3 overflow-hidden rounded-xl border-b border-foreground/15 transition-all duration-500 hover:bg-ink hover:text-ink-foreground hover:shadow-card">
+              <div className="flex w-full items-center gap-4 px-5 py-7 text-left md:px-8">
+                <span className="text-xs font-medium text-muted-foreground transition-colors duration-500 group-hover:text-ink-muted">0{i + 1}</span>
+                <span className="flex-1 text-2xl font-medium uppercase tracking-tight md:text-5xl">{s.t}</span>
+                <ArrowUpRight className="h-6 w-6 shrink-0 text-muted-foreground transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-ink-foreground" />
               </div>
-            );
-          })}
+              <div className="grid max-h-0 grid-rows-[0fr] transition-all duration-500 group-hover:max-h-40 group-hover:grid-rows-[1fr]">
+                <p className="min-h-0 max-w-md overflow-hidden px-5 pb-0 text-sm leading-relaxed text-ink-muted transition-colors duration-500 group-hover:text-ink-muted md:px-8 md:pl-[4.25rem]">
+                  <span className="block pb-8">{s.d}</span>
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-        <Reveal><p className="mt-10 max-w-md text-sm text-muted-foreground">Every project is different. I step into the pipeline wherever the project needs me.</p></Reveal>
       </div>
     </section>
   );
@@ -219,14 +183,6 @@ function Experience() {
               <p className="text-sm text-ink-muted md:text-right">{e.dates}</p>
             </Reveal>
           ))}
-          <Reveal className="pt-8">
-            <p className="label-mono text-ink-muted">Selected client work</p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {projects.map((p) => (
-                <span key={p.slug} className="rounded-full border border-ink-border px-4 py-2 text-xs">{p.name}</span>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>
@@ -260,11 +216,11 @@ function About() {
             <Placeholder label="[Add behind-the-scenes photo]" className="mt-10 aspect-[4/5] w-full rounded-2xl" />
           </Reveal>
           <Reveal className="space-y-5 text-lg leading-relaxed text-muted-foreground md:pt-24">
-            <p className="text-2xl font-medium leading-snug tracking-tight text-foreground">I'm a content producer and social media strategist focused on turning ideas into content that actually gets used, published and seen.</p>
-            <p>My work sits across the entire content pipeline — from developing ideas and writing scripts to handling production, editing videos and managing social media.</p>
-            <p>I don't believe every project needs the same process. Sometimes a brand needs a script. Sometimes it needs a shoot. Sometimes it needs someone to take the entire content pipeline off its hands.</p>
-            <p className="font-semibold text-foreground">I step in where I'm needed.</p>
-            <p className="text-base">I also run Twisted Media, where I work on larger creative and social media projects.</p>
+            <p className="hero-slide-up text-2xl font-medium leading-snug tracking-tight text-foreground" style={{ animationDelay: "0.08s" }}>I'm a content producer and social media strategist focused on turning ideas into content that actually gets used, published and seen.</p>
+            <p className="hero-slide-up" style={{ animationDelay: "0.16s" }}>My work sits across the entire content pipeline — from developing ideas and writing scripts to handling production, editing videos and managing social media.</p>
+            <p className="hero-slide-up" style={{ animationDelay: "0.24s" }}>I don't believe every project needs the same process. Sometimes a brand needs a script. Sometimes it needs a shoot. Sometimes it needs someone to take the entire content pipeline off its hands.</p>
+            <p className="hero-slide-up font-semibold text-foreground" style={{ animationDelay: "0.32s" }}>I step in where I'm needed.</p>
+            <p className="hero-slide-up text-base" style={{ animationDelay: "0.4s" }}>I also run Twisted Media, where I work on larger creative and social media projects.</p>
           </Reveal>
         </div>
       </Shell>
@@ -274,7 +230,7 @@ function About() {
 
 function HowIWork() {
   return (
-    <section className="px-4 py-20">
+    <section id="how-i-work" className="scroll-mt-24 px-4 py-20">
       <div className="mx-auto max-w-6xl">
         <Reveal><SectionTitle>How I Work</SectionTitle></Reveal>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

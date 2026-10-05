@@ -18,8 +18,20 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "event-campaigns",
+    name: "Event Promotional Campaigns",
+    category: "Events · Promotion",
+    role: "Concepts, reels, editing & promotion",
+    description:
+      "Promotional concepts and reels for local events including Retro Bollywood Night and a Cosplay / Diet Coke Rave.",
+    tags: ["Concepts", "Reels", "Editing", "Promotion"],
+    brief: "Local events needing attention-grabbing promotional content. [Add campaign details]",
+    roles: ["Concept", "Scripting", "Editing", "Social Media"],
+    approach: "[Add approach details]",
+  },
+  {
     slug: "arihant-jewellers",
-    name: "Arihant Jewellers",
+    name: "Jewellery Business",
     location: "Chhatrapati Sambhajinagar, Maharashtra",
     category: "Content Production · Social Media",
     role: "Strategy, scripting, production, editing & social",
@@ -34,7 +46,7 @@ export const projects: Project[] = [
   },
   {
     slug: "education-client",
-    name: "Institute / Education Client",
+    name: "Institute",
     category: "Social Media Management",
     role: "Planning, reels, stories & editing",
     description:
@@ -46,7 +58,7 @@ export const projects: Project[] = [
   },
   {
     slug: "advocate-client",
-    name: "Advocate / Professional Services",
+    name: "Professional Services",
     category: "Short-form Content",
     role: "Content creation & reel editing",
     description:
@@ -54,18 +66,6 @@ export const projects: Project[] = [
     tags: ["Short-form", "Reels", "Editing"],
     brief: "[Add what the client needed]",
     roles: ["Concept", "Production", "Editing"],
-    approach: "[Add approach details]",
-  },
-  {
-    slug: "event-campaigns",
-    name: "Event Promotional Campaigns",
-    category: "Events · Promotion",
-    role: "Concepts, reels, editing & promotion",
-    description:
-      "Promotional concepts and reels for local events including Retro Bollywood Night and a Cosplay / Diet Coke Rave.",
-    tags: ["Concepts", "Reels", "Editing", "Promotion"],
-    brief: "Local events needing attention-grabbing promotional content. [Add campaign details]",
-    roles: ["Concept", "Scripting", "Editing", "Social Media"],
     approach: "[Add approach details]",
   },
 ];
@@ -88,8 +88,9 @@ export const services = [
 ];
 
 export const experience = [
-  { title: "Independent Content Producer", sub: "Content Strategy · Production · Editing · Social Media", dates: "2024 — Present", d: "Working directly with brands, businesses and projects to develop, produce and manage social-first content." },
-  { title: "Founder — Twisted Media", sub: "Creative Content & Social Media", dates: "2024 — Present", d: "Building and running Twisted Media, a creative content agency focused on content, social media, advertising, branding and digital execution." },
+  { title: "Freelancer", sub: "Videography · Video Editing", dates: "2022 — 2024", d: "Working on freelance projects across videography and video editing." },
+  { title: "Content Producer", sub: "Content Strategy · Production · Editing · Social Media", dates: "2024 — 2026", d: "Working directly with brands, businesses and projects to develop, produce and manage social-first content." },
+  { title: "Founder — Twisted Media", sub: "Creative Content & Social Media", dates: "2026 — Present", d: "Building and running Twisted Media, a creative content agency." },
 ];
 
 export const howIWork = [

@@ -64,8 +64,21 @@ function CaseStudy() {
 
           <Reveal className="mt-20"><Label>My Approach</Label><p className="mt-4 max-w-3xl text-2xl font-medium leading-snug tracking-tight">{p.approach}</p></Reveal>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-3">
-            {[1, 2, 3].map((i) => <Placeholder key={i} label="[Add image]" className="aspect-[9/16] rounded-2xl" />)}
+          <div className="mt-12 grid items-center gap-4 md:grid-cols-[1fr_420px_1fr]">
+            <div className="hidden h-[420px] rounded-[1.5rem] border border-border bg-card/70 md:block" />
+            <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-card">
+              <div className="aspect-[9/16] w-full">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube.com/embed/uDGcUm2gqio?si=BHgUjmtpeWbauEBy"
+                  title="YouTube short"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+            <div className="hidden h-[420px] rounded-[1.5rem] border border-border bg-card/70 md:block" />
           </div>
 
           <Reveal className="mt-20 rounded-3xl bg-ink px-6 py-14 text-ink-foreground md:px-12">
