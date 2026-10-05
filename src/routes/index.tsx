@@ -105,7 +105,7 @@ function Hero() {
               <a href="#work" className="inline-flex items-center gap-1.5 rounded-full border border-border px-5 py-3 text-xs font-semibold uppercase tracking-wider transition-colors hover:bg-muted">View My Work <ArrowDown className="h-3.5 w-3.5" /></a>
             </div>
           </div>
-          <SaturatingImage src="https://img.sanishtech.com/u/f6814816a283debaad54db5a750cf8d7.png" alt="Portrait of Prithvi" wrapClass="hero-fade-in order-1 -mt-10 md:order-2 md:z-20 md:-mt-44 md:origin-bottom md:scale-[1.3]" imgClass="w-full grayscale" />
+          <SaturatingImage src="https://img.sanishtech.com/u/f6814816a283debaad54db5a750cf8d7.png" alt="Portrait of Prithvi" wrapClass="hero-fade-in order-1 -mt-10 md:order-2 md:z-20 md:-mt-72 md:origin-bottom md:scale-[1.3]" imgClass="w-full grayscale" />
           <div className="hero-slide-up order-3 flex flex-col gap-3 md:items-end md:pb-14" style={{ animationDelay: "0.15s" }}>
             <p className="max-w-[16rem] text-sm leading-relaxed text-muted-foreground md:text-right">From concept to distribution, I build and manage content around what each project actually needs.</p>
             <div className="hero-slide-up flex flex-wrap gap-2 md:justify-end" style={{ animationDelay: "0.25s" }}>
