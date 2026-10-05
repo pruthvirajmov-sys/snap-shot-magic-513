@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/content";
+import { SaturatingProjectImage } from "./SaturatingProjectImage";
 import { Placeholder } from "./Reveal";
 
 export function ProjectCard({ p }: { p: Project }) {
@@ -8,9 +9,9 @@ export function ProjectCard({ p }: { p: Project }) {
     <Link to="/work/$slug" params={{ slug: p.slug }} className="group block rounded-2xl bg-card p-3 shadow-card transition-transform duration-500 hover:-translate-y-1.5">
       <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
         {p.image ? (
-          <img src={p.image} alt={p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          <SaturatingProjectImage src={p.image} alt={p.name} className="h-full w-full" />
         ) : (
-          <Placeholder label="[Add project image]" className="h-full w-full transition-transform duration-700 group-hover:scale-105" />
+          <Placeholder label="[Add project image]" className="h-full w-full" />
         )}
         <span className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 scale-75 items-center justify-center rounded-full bg-card opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100">
           <ArrowUpRight className="h-5 w-5" />

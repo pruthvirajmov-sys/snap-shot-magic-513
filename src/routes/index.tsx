@@ -4,12 +4,13 @@ import { ArrowUpRight, ArrowDown, Plus, X, Instagram, Linkedin, Mail, MessageCir
 import { Nav, Badge } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { ProjectCard } from "@/components/site/ProjectCard";
+import { MusicPlayer } from "@/components/site/MusicPlayer";
 import { Reveal, SectionTitle, Placeholder } from "@/components/site/Reveal";
 import { projects, pipeline, services, experience, howIWork, clients, links } from "@/lib/content";
 
 const TITLE = "Pruthviraj Rajput — Content Producer & Social Media Strategist";
 const DESC = "Pruthviraj Rajput is a content producer and social media strategist handling the content pipeline from strategy and scripting to production, editing and social media.";
-const PROFILE_IMAGE = "https://img.sanishtech.com/u/f6814816a283debaad54db5a750cf8d7.png";
+const PROFILE_IMAGE = "/images/Firefly.png";
 const BRAND_LOGOS = [
   {
     name: "PW",
@@ -282,7 +283,7 @@ function Twisted() {
     <section className="px-4 py-20">
       <Reveal className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1fr_1.3fr]">
         <div className="relative aspect-square overflow-hidden rounded-3xl border border-border bg-card/70 backdrop-blur-sm">
-          <img src="https://img.sanishtech.com/u/208d0a100edf78ed17566e3db087429c.png" alt="Twisted Media logo" className="h-full w-full object-cover" loading="lazy" />
+          <img src="/images/IMG_2774.PNG" alt="Twisted Media logo" className="h-full w-full object-cover" loading="lazy" />
         </div>
         <div>
           <p className="label-mono text-muted-foreground">/Also Building Twisted Media</p>
@@ -303,9 +304,9 @@ function About() {
           <Reveal>
             <SectionTitle>About</SectionTitle>
             <div className="mt-10 flex flex-col items-center gap-8">
-              <a href={links.instagram} target="_blank" rel="noreferrer" className="block aspect-square w-40 overflow-hidden rounded-full border border-border bg-card shadow-card transition-transform hover:scale-[1.02] sm:w-48">
+              <a href={links.instagram} target="_blank" rel="noreferrer" className="block aspect-square w-44 overflow-hidden rounded-full border border-border bg-card shadow-card transition-transform hover:scale-[1.02] sm:w-52">
                 <img
-                  src="https://instagram.fpnq7-8.fna.fbcdn.net/v/t51.82787-19/769777681_18123351581505311_3562466294217978001_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=1EPtc2pLDFcQ7kNvwHq6jaR&_nc_oc=AdpbI9ta7WLyRfNNto3PNAIRhY7AueLs1sf9usxjC-LbirZAIQBgE2a2RlLB8fZDm10&_nc_zt=24&_nc_ht=instagram.fpnq7-8.fna&_nc_gid=mVWCF3EvZGm47apqK7trHw&_nc_ss=7baaf&oh=00_AQNURGDPoFKDLjnPiNW7FfbVmgvKG8ShV9CVEAaobmUCBQ&oe=6AC96E36"
+                  src="/images/IMG_7210.JPG.jpeg"
                   alt="Portrait of Prithvi"
                   className="h-full w-full object-cover grayscale"
                   loading="lazy"
@@ -328,6 +329,7 @@ function About() {
             <p className="hero-slide-up text-2xl font-medium leading-snug tracking-tight text-foreground" style={{ animationDelay: "0.08s" }}>I focus on turning ideas into content that actually gets used, published and seen.</p>
             <p className="hero-slide-up" style={{ animationDelay: "0.24s" }}>I don't believe every project needs the same process. Sometimes a brand needs a script. Sometimes it needs a shoot. Sometimes it needs someone to take the entire content pipeline off its hands.</p>
             <p className="hero-slide-up font-semibold text-foreground" style={{ animationDelay: "0.32s" }}>I step in where I'm needed.</p>
+            <MusicPlayer />
           </Reveal>
         </div>
       </Shell>

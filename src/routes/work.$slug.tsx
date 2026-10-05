@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Reveal, Placeholder } from "@/components/site/Reveal";
+import { SaturatingProjectImage } from "@/components/site/SaturatingProjectImage";
 import { projects } from "@/lib/content";
 
 export const Route = createFileRoute("/work/$slug")({
@@ -85,7 +86,7 @@ function CaseStudy() {
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground">{p.description}</p>
           </Reveal>
           <Reveal>
-            {p.image ? <img src={p.image} alt={p.name} className="mt-12 aspect-[16/9] w-full rounded-3xl object-cover" /> : <Placeholder label="[Add hero image / reel thumbnail]" className="mt-12 aspect-[16/9] w-full rounded-3xl" />}
+            {p.image ? <SaturatingProjectImage src={p.image} alt={p.name} className="mt-12 aspect-[16/9] w-full rounded-3xl" /> : <Placeholder label="[Add hero image / reel thumbnail]" className="mt-12 aspect-[16/9] w-full rounded-3xl" />}
           </Reveal>
 
           <div className="mt-20 grid gap-14 md:grid-cols-2">
