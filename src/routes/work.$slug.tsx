@@ -29,6 +29,42 @@ export const Route = createFileRoute("/work/$slug")({
 });
 
 const flow = ["Strategy", "Concept", "Script", "Production", "Edit", "Distribution"];
+const jewelleryVideos = [
+  "bbg-P-SaYbs",
+  "A2GE1nMTFIU",
+  "HhFvPamvAfM",
+  "MgnzMbNar14",
+  "x-ZIBqFJlrU",
+  "wkEn-7RWcBg",
+];
+const eventCampaignVideos = [
+  "x-2LphCY0ig",
+  "_g-O2RbZn_I",
+  "-LV6x17IGGI",
+  "naXvoqbFCXA",
+  "r2nHJ3tME1k",
+  "mpu2IDZjlTM",
+];
+const instituteVideos = [
+  "Joa6z_HwJx8",
+  "HIA2JaJwofc",
+  "r97u0ZF6JjM",
+  "SWhPoclbH6M",
+  "WSNe2ByRGEk",
+  "K5ZxFlEHBv4",
+];
+
+function buildYouTubeEmbedUrl(videoId: string) {
+  const params = new URLSearchParams({
+    rel: "0",
+    modestbranding: "1",
+    playsinline: "1",
+    vq: "hd1080",
+    controls: "1",
+  });
+
+  return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+}
 
 function Label({ children }: { children: string }) {
   return <h2 className="label-mono text-muted-foreground">/{children}</h2>;
@@ -64,22 +100,52 @@ function CaseStudy() {
 
           <Reveal className="mt-20"><Label>My Approach</Label><p className="mt-4 max-w-3xl text-2xl font-medium leading-snug tracking-tight">{p.approach}</p></Reveal>
 
-          <div className="mt-12 grid items-center gap-4 md:grid-cols-[1fr_420px_1fr]">
-            <div className="hidden h-[420px] rounded-[1.5rem] border border-border bg-card/70 md:block" />
-            <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-card">
-              <div className="aspect-[9/16] w-full">
-                <iframe
-                  className="h-full w-full"
-                  src="https://www.youtube.com/embed/uDGcUm2gqio?si=BHgUjmtpeWbauEBy"
-                  title="YouTube short"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
+          {p.slug === "arihant-jewellers" || p.slug === "event-campaigns" || p.slug === "education-client" ? (
+            <Reveal className="mt-12">
+              <Label>Selected Videos</Label>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {(p.slug === "arihant-jewellers"
+                  ? jewelleryVideos
+                  : p.slug === "event-campaigns"
+                    ? eventCampaignVideos
+                    : instituteVideos).map((videoId, index) => (
+                  <div
+                    key={videoId}
+                    className="mx-auto w-full max-w-[360px] overflow-hidden rounded-[1.5rem] border border-border bg-card shadow-card"
+                  >
+                    <div className="aspect-[9/16] w-full">
+                      <iframe
+                        className="h-full w-full"
+                        src={buildYouTubeEmbedUrl(videoId)}
+                        title={`${p.name} video ${index + 1}`}
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
+            </Reveal>
+          ) : (
+            <div className="mt-12 grid items-center gap-4 md:grid-cols-[1fr_420px_1fr]">
+              <div className="hidden h-[420px] rounded-[1.5rem] border border-border bg-card/70 md:block" />
+              <div className="mx-auto w-full max-w-[420px] overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-card">
+                <div className="aspect-[9/16] w-full">
+                  <iframe
+                    className="h-full w-full"
+                    src={buildYouTubeEmbedUrl("uDGcUm2gqio")}
+                    title="YouTube short"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+              </div>
+              <div className="hidden h-[420px] rounded-[1.5rem] border border-border bg-card/70 md:block" />
             </div>
-            <div className="hidden h-[420px] rounded-[1.5rem] border border-border bg-card/70 md:block" />
-          </div>
+          )}
 
           <Reveal className="mt-20 rounded-3xl bg-ink px-6 py-14 text-ink-foreground md:px-12">
             <h2 className="label-mono text-ink-muted">/Content Pipeline</h2>

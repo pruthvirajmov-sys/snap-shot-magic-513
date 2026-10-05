@@ -73,6 +73,8 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
+    position: relative;
+    isolation: isolate;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -101,24 +103,65 @@
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
 .reveal.in { opacity: 1; transform: none; }
 
-.cloud-bg {
-  animation: cloudAmbient 24s ease-in-out infinite alternate;
+.brand-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
 }
 
-.cloud-bg img {
-  transition: transform 0.7s ease-out;
+.brand-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: brandMarquee 80s linear infinite;
 }
 
-@keyframes cloudAmbient {
-  0% {
-    transform: translate3d(-18px, 0, 0) scale(1.02);
-  }
-  50% {
-    transform: translate3d(22px, 8px, 0) scale(1.05);
-  }
-  100% {
-    transform: translate3d(-12px, -6px, 0) scale(1.03);
-  }
+.brand-marquee:hover .brand-marquee__track,
+.brand-marquee:focus-within .brand-marquee__track {
+  animation-play-state: paused;
+}
+
+.brand-marquee__group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.brand-marquee__item {
+  display: flex;
+  min-height: 3.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  background: color-mix(in oklch, var(--color-card) 82%, transparent);
+  padding: 0.4rem 1.1rem 0.4rem 0.4rem;
+  color: var(--color-foreground);
+  white-space: nowrap;
+}
+
+.brand-marquee__item img {
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.brand-marquee__item span {
+  color: var(--color-muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+@keyframes brandMarquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee { overflow-x: auto; }
+  .brand-marquee__track { animation: none; }
 }
 
 .hero-slide-down {

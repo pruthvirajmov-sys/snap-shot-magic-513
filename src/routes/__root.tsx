@@ -11,6 +11,8 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { BlackStarField } from "@/components/site/BlackStarField";
+import { VantaFogBackground } from "@/components/site/VantaFogBackground";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -108,7 +110,9 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <VantaFogBackground />
+        <BlackStarField />
+        <div className="relative z-10 min-h-screen">{children}</div>
         <Scripts />
       </body>
     </html>
